@@ -1,8 +1,8 @@
 import React from "react";
-import './carousel.css'
+import './TablesData.css'
 import { Button } from "@mui/material";
 
-function Carousel() {
+function TablesData() {
     const handleButtonClick = () => {
         window.open("https://www.every.org/her-initiative?utm_campaign=donate-link#/donate/card");
     };
@@ -38,26 +38,7 @@ function Carousel() {
                 </div>
             </div>
         </div>
-        // <div style={{
-        //     height: '95vh',
-        //     backgroundImage: 'url("/photos/malaika.mp4")',
-        //     backgroundSize: 'cover',
-        //     backgroundPosition: 'center',
-        // }}>
-        //     <div className="overlay">
-        //         <div className="textContainer">
-        //             {/* <p className="header1">Ensure young women have a</p> */}
-        //             <p className="header2">Yes! To Financial  <br /> Freedom</p>
-        //             <div style={{ display: "flex", marginTop: '40px' }}>
-        //                 <p className="header3">MAKE A DIFFERENCE</p>
-        //                 <Button variant="contained" onClick={handleButtonClick} className="button" sx={{ fontSize: '16px', fontWeight: 'bold', borderRadius: '5px' }}>
-        //                     DONATE NOW
-        //                 </Button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     );
 }
 
-export default Carousel;
+export default TablesData;
