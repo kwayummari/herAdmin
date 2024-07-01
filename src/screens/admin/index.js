@@ -29,7 +29,7 @@ function Authentication() {
             if (data == 1) {
                 setUploadStatus('Login successful');
                 localStorage.setItem('userId', data );
-                handleClick('/blogUpload')
+                handleClick('/Home')
             }
         } catch (error) {
             setUploadStatus('Something went wrong');
