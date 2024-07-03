@@ -41,8 +41,8 @@ function Authentication() {
 
     return (
         <div>
-            <div className="contents">
-                <Card variant="elevation" elevation={3} className="contactCard">
+            <div className="contents" style={{marginTop: '180px', marginBottom: '100px'}}>
+                <Card variant="elevation" elevation={3} className="loginCard">
                     <CardContent>
                         <form onSubmit={handleSubmit}>
                             <TextField
