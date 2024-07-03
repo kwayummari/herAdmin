@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Card, CardContent, Typography } from '@mui/material';
-import AboutCarousel from '../about/aboutCarousel';
-import Part1 from '../about/part1';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,8 +52,6 @@ function ReportForm() {
 
     return (
         <div>
-            <AboutCarousel />
-            <Part1 heading2={'Report Upload'} heading3={'Home/Reports Upload'} />
             <div className="contents">
                 <Card variant="elevation" elevation={3} className="contactCard">
                     <p className="title">Create a New Report</p>

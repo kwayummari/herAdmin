@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Button, TextField, Card, CardContent, Typography } from '@mui/material';
-import AboutCarousel from '../about/aboutCarousel';
-import Part1 from '../about/part1';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,8 +41,6 @@ function Authentication() {
 
     return (
         <div>
-            <AboutCarousel />
-            <Part1 heading2={'AUTHENTICATION'} heading3={'Home/Login'} />
             <div className="contents">
                 <Card variant="elevation" elevation={3} className="contactCard">
                     <CardContent>

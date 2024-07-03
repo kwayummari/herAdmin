@@ -9,6 +9,13 @@
     align-items: center;
   }
 
+  .table-container {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
 .textContainer {
     position: absolute;
     left: 200px;

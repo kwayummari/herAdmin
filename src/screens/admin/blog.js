@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Card, CardContent, Typography, Checkbox, FormControlLabel } from '@mui/material';
-import AboutCarousel from '../about/aboutCarousel';
-import Part1 from '../about/part1';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
@@ -9,26 +7,13 @@ import ImageTool from '@editorjs/image';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 
-function NewBlogForm() {
+function NewBlogForm({handleCloseModal, setUploadStatus, uploadStatus}) {
     const [title, setTitle] = useState('');
-    const [uploadStatus, setUploadStatus] = useState(null);
     const [editor, setEditor] = useState(null);
     const [image, setImage] = useState(null);
-    const [category, setCategory] = useState('1');
-    const [checked, setChecked] = React.useState(true);
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-        if (checked === true) {
-            setCategory('1')
-        } else {
-            setCategory('')
-        }
-        console.log(category)
-    };
     useEffect(() => {
         const userId = localStorage.getItem('userId');
-        console.log('userId', userId)
         if (userId != 1) {
             handleClick('/admins')
         }
@@ -113,13 +98,11 @@ function NewBlogForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-
         const formData = new FormData();
         formData.append('title', title);
         formData.append('image', image);
         formData.append('description', '');
-        formData.append('category', category);
+        formData.append('category', '');
         formData.append('full_description', JSON.stringify(editor));
 
         fetch('https://herinitiative.or.tz/her-api/api/blog/add_blog.php', {
@@ -128,34 +111,21 @@ function NewBlogForm() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Upload successful:', data);
                 setUploadStatus(data.message);
+                handleCloseModal();
             })
             .catch(error => {
-                console.error('Upload failed:', error);
                 setUploadStatus('Error uploading file.');
+                handleCloseModal();
             });
     };
 
     return (
         <div>
-            <AboutCarousel />
-            <Part1 heading2={'Blog Upload'} heading3={'Home/Blog Upload'} />
             <div className="contents">
                 <Card variant="elevation" elevation={3} className="contactCard">
                     <CardContent>
                         <form onSubmit={handleSubmit}>
-                        <Button onClick={() => handleClick('/AdminReports')} variant="contained"  className="donationButton1">Reports</Button><br />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={handleChange}
-                                        inputProps={{ 'aria-label': 'controlled' }}
-                                    />
-                                }
-                                label="Success Story"
-                            />
                             <TextField
                                 label="Title"
                                 variant="outlined"
