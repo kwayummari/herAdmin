@@ -28,7 +28,7 @@ import { useNavigate } from 'react-router-dom';
 
 const fetchProgramData = async () => {
     try {
-        const response = await fetch('https://herinitiative.or.tz/her-api/api/blog/get_blog.php', {
+        const response = await fetch('https://herinitiative.or.tz/her-api/api/blog/get_stories.php', {
             method: 'GET',
         });
         const data = await response.json();
@@ -76,7 +76,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TablesData() {
+function SuccessData() {
     const [programData, setProgramData] = useState([]);
     const [rowData, setRowData] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -164,7 +164,7 @@ function TablesData() {
                     <Button onClick={() => {
                         handleClose();
                         handleOpenModal2();
-                    }} variant="contained" className="donationButton1">Add Blog</Button>
+                    }} variant="contained" className="donationButton1">Add Story</Button>
                 </div>
                 {uploadStatus && (
                     <div style={{ backgroundColor: 'green', color: 'white', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
@@ -303,7 +303,7 @@ function TablesData() {
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Add Blog?
                         </Typography>
-                        <NewBlogForm handleCloseModal={handleCloseModal} setUploadStatus={setUploadStatus} uploadStatus={uploadStatus} isStory={false} />
+                        <NewBlogForm handleCloseModal={handleCloseModal} setUploadStatus={setUploadStatus} uploadStatus={uploadStatus} isStory={true} />
                     </Box>
                 </Modal>
                 <Modal
@@ -313,7 +313,7 @@ function TablesData() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Preview id={rowData.id} link={'get_blog_byId.php'} title={'Our Blogs'} />
+                        <Preview id={rowData.id} link={'get_stories_byId.php'} title={'Our Stories'} />
                     </Box>
                 </Modal>
             </div>
@@ -321,4 +321,4 @@ function TablesData() {
     );
 }
 
-export default TablesData;
+export default SuccessData;

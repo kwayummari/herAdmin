@@ -22,13 +22,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'
 import EditBlogForm from '../admin/blogEdit';
 import CloseIcon from '@mui/icons-material/Close';
-import NewBlogForm from '../admin/blog';
-import Preview from '../preview/preview';
 import { useNavigate } from 'react-router-dom';
+import ReportForm from '../admin/reports';
+import PreviewReport from './previewReport';
 
 const fetchProgramData = async () => {
     try {
-        const response = await fetch('https://herinitiative.or.tz/her-api/api/blog/get_blog.php', {
+        const response = await fetch('https://herinitiative.or.tz/her-api/api/reports/get_reports.php', {
             method: 'GET',
         });
         const data = await response.json();
@@ -76,7 +76,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TablesData() {
+function ReportData() {
     const [programData, setProgramData] = useState([]);
     const [rowData, setRowData] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -112,7 +112,8 @@ function TablesData() {
     const deleteData = async (id) => {
         const formData = new FormData();
         formData.append('id', id);
-        fetch('https://herinitiative.or.tz/her-api/api/blog/delete_blog.php', {
+        console.log(id)
+        fetch('https://herinitiative.or.tz/her-api/api/reports/delete_reports.php', {
             method: 'POST',
             body: formData,
         })
@@ -123,7 +124,7 @@ function TablesData() {
             })
             .catch(error => {
                 console.error('Failed deleting:', error);
-                setUploadStatus('Error deleting blog.');
+                setUploadStatus('Error deleting report.');
             });
     };
     const navigate = useNavigate();
@@ -133,38 +134,22 @@ function TablesData() {
 
     return (
         <>
-            <div style={{ backgroundColor: 'black', width: '100%', height: '100px', display: 'flex', alignItems: 'center', padding: '0 20px' }}>
-                <div style={{ marginRight: '50px' }}>
-                    <img src="/logo192.png" alt="logo" width="150px" />
-                </div>
-                <Typography
-                    variant="body1"
-                    onClick={() => handleClick1('/home')}
-                    style={{ marginRight: '20px', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
-                >
+            <div style={{ backgroundColor: 'black', width: '100%', height: '100px', display: 'flex' }}>
+                <div style={{ marginRight: '50px' }}><img src="/logo192.png" alt="logo" width={'150px'} /></div>
+                <Typography variant="body1" onClick={() => handleClick1('/home')} style={{ marginRight: '20px', color: 'white', paddingTop: '50px', fontWeight: 'bold', paddingLeft: '20px' }}>
                     Blog
                 </Typography>
-                <Typography
-                    variant="body1"
-                    onClick={() => handleClick1('/reports')}
-                    style={{ marginRight: '20px', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
-                >
+                <Typography variant="body1" onClick={() => handleClick1('/reports')} style={{ marginRight: '20px', color: 'white', paddingTop: '50px', fontWeight: 'bold', paddingLeft: '20px' }}>
                     Report
                 </Typography>
-                <Typography
-                    variant="body1"
-                    onClick={() => handleClick1('/success')}
-                    style={{ color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
-                >
+                <Typography variant="body1" onClick={() => handleClick1('/success')} style={{ marginRight: '20px', color: 'white', paddingTop: '50px', fontWeight: 'bold', paddingLeft: '20px' }}>
                     Success Stories
                 </Typography>
             </div>
             <div className='table-container'>
                 <div style={{ display: 'flex', alignItems: 'left', marginBottom: '20px' }}>
-                    <Button onClick={() => {
-                        handleClose();
-                        handleOpenModal2();
-                    }} variant="contained" className="donationButton1">Add Blog</Button>
+                    <Button onClick={() => {handleClose();
+                        handleOpenModal2();}} variant="contained" className="donationButton1">Add Report</Button>
                 </div>
                 {uploadStatus && (
                     <div style={{ backgroundColor: 'green', color: 'white', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px' }}>
@@ -244,14 +229,6 @@ function TablesData() {
                 >
                     <MenuItem onClick={() => {
                         handleClose();
-                        handleOpenModal();
-                    }}>
-                        <ListItemIcon>
-                            <DriveFileRenameOutlineIcon fontSize="small" />
-                        </ListItemIcon> Edit
-                    </MenuItem>
-                    <MenuItem onClick={() => {
-                        handleClose();
                         handleOpenModal1();
                     }}>
                         <ListItemIcon>
@@ -288,7 +265,7 @@ function TablesData() {
                 >
                     <Box sx={style}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Are you sure you want to delete this blog?
+                            Are you sure you want to delete this report?
                         </Typography>
                         <Button onClick={() => deleteData(rowData.id)} variant="contained" fullWidth className="donationButton1">Delete</Button>
                     </Box>
@@ -301,9 +278,9 @@ function TablesData() {
                 >
                     <Box sx={style}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Add Blog?
+                            Add Report?
                         </Typography>
-                        <NewBlogForm handleCloseModal={handleCloseModal} setUploadStatus={setUploadStatus} uploadStatus={uploadStatus} isStory={false} />
+                        <ReportForm handleCloseModal={handleCloseModal} setUploadStatus={setUploadStatus} uploadStatus={uploadStatus}/>
                     </Box>
                 </Modal>
                 <Modal
@@ -313,7 +290,7 @@ function TablesData() {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Preview id={rowData.id} link={'get_blog_byId.php'} title={'Our Blogs'} />
+                        <PreviewReport programData={rowData} />
                     </Box>
                 </Modal>
             </div>
@@ -321,4 +298,4 @@ function TablesData() {
     );
 }
 
-export default TablesData;
+export default ReportData;

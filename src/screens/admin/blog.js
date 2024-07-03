@@ -7,7 +7,7 @@ import ImageTool from '@editorjs/image';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 
-function NewBlogForm({handleCloseModal, setUploadStatus, uploadStatus}) {
+function NewBlogForm({handleCloseModal, setUploadStatus, uploadStatus, isStory}) {
     const [title, setTitle] = useState('');
     const [editor, setEditor] = useState(null);
     const [image, setImage] = useState(null);
@@ -102,7 +102,7 @@ function NewBlogForm({handleCloseModal, setUploadStatus, uploadStatus}) {
         formData.append('title', title);
         formData.append('image', image);
         formData.append('description', '');
-        formData.append('category', '');
+        formData.append('category', isStory ? '1': '');
         formData.append('full_description', JSON.stringify(editor));
 
         fetch('https://herinitiative.or.tz/her-api/api/blog/add_blog.php', {
@@ -111,10 +111,12 @@ function NewBlogForm({handleCloseModal, setUploadStatus, uploadStatus}) {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 setUploadStatus(data.message);
                 handleCloseModal();
             })
             .catch(error => {
+                console.log(error)
                 setUploadStatus('Error uploading file.');
                 handleCloseModal();
             });

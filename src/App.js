@@ -8,6 +8,8 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Admins from './screens/admin';
 import ReportForm from './screens/admin/reports';
 import NewBlogForm from './screens/admin/blog';
+import Report from './screens/report';
+import Success from './screens/success';
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
             <Route path="admins" element={<Admins />} />
             <Route path="blogUpload" element={<NewBlogForm />} />
             <Route path="AdminReports" element={<ReportForm />} />
+            <Route path="reports" element={<Report />} />
+            <Route path="success" element={<Success />} />
           </Route>
         </Routes>
       </HashRouter>
