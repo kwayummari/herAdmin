@@ -10,6 +10,7 @@ import ReportForm from './screens/admin/reports';
 import NewBlogForm from './screens/admin/blog';
 import Report from './screens/report';
 import Success from './screens/success';
+import NewsLetter from './screens/newsLetter';
 
 export default function App() {
   return (
@@ -19,12 +20,14 @@ export default function App() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+        <script type="text/javascript" src="https://smtpjs.com/v3/smtp.js"></script>
       </Helmet>
       <HashRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Admins />} />
             <Route path="home" element={<Home />} />
+            <Route path="newsLetter" element={<NewsLetter />} />
             <Route path="admins" element={<Admins />} />
             <Route path="blogUpload" element={<NewBlogForm />} />
             <Route path="AdminReports" element={<ReportForm />} />

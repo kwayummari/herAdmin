@@ -146,6 +146,13 @@ function TablesData() {
                 </Typography>
                 <Typography
                     variant="body1"
+                    onClick={() => handleClick1('/newsLetter')}
+                    style={{ marginRight: '20px', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
+                >
+                    NewsLetter
+                </Typography>
+                <Typography
+                    variant="body1"
                     onClick={() => handleClick1('/reports')}
                     style={{ marginRight: '20px', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
                 >
